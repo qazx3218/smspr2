@@ -1,16 +1,15 @@
-package com.example.smspr2.service;
-
+package com.example.smspr2.mapper;
 
 import com.example.smspr2.dto.DefaultDto;
 import com.example.smspr2.dto.TbpostDto;
-
 import java.util.List;
+import java.util.Map;
 
-public interface TbpostService {
-    TbpostDto.CreateResDto create(TbpostDto.CreateReqDto param);
-    TbpostDto.CreateResDto update(TbpostDto.UpdateReqDto param);
+public interface TbpostMapper {
     TbpostDto.SelectResDto detail(DefaultDto.SelectReqDto param);
     List<TbpostDto.SelectResDto> list(TbpostDto.ListReqDto param);
-    DefaultDto.PagedListResDto pagedList(TbpostDto.PagedListReqDto param);
+
     List<TbpostDto.SelectResDto> scrollList(TbpostDto.ScrollListReqDto param);
+    List<TbpostDto.SelectResDto> pagedList(TbpostDto.PagedListReqDto param);
+    int pagedListCount(TbpostDto.PagedListReqDto param);
 }

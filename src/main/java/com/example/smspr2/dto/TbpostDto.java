@@ -6,8 +6,12 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
+
+import java.util.List;
 
 public class TbpostDto {
+
     @Builder
     @Schema
     @Getter
@@ -42,19 +46,14 @@ public class TbpostDto {
     public static class CreateResDto{
         private String id;
     }
-    @Builder
+    @SuperBuilder
     @Schema
     @Getter
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
-    public static class UpdateReqDto{
-        @Schema(description = "id", example="")
-        @NotNull
-        @NotEmpty
-        private String id;
-
-        @Schema(description = "id", example="")
+    public static class UpdateReqDto extends DefaultDto.UpdateReqDto{
+        @Schema(description = "title", example="")
         @Size(max=400)
         private String title;
         @Schema(description = "author", example="")
@@ -63,36 +62,56 @@ public class TbpostDto {
         @Schema(description = "content", example="")
         @Size(max=4000)
         private String content;
-
     }
-    @Builder
+
     @Schema
     @Getter
     @Setter
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class SelectReqDto{
-        @Schema(description = "id", example="")
-        @NotNull
-        @NotEmpty
-        private String id;
-    }
-    @Builder
-    @Schema
-    @Getter
-    @Setter
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class SelectResDto{
-        private String id;
-        private String deleted;
-        private String process;
-        private String createdAt;
-        private String modifiedAt;
-
+    public static class SelectResDto extends DefaultDto.SelectResDto{
+        @Schema(description = "title", example="")
         private String title;
+        @Schema(description = "author", example="")
         private String author;
+        @Schema(description = "content", example="")
         private String content;
-
     }
+
+    @SuperBuilder
+    @Schema
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ListReqDto extends DefaultDto.ListReqDto{
+        @Schema(description = "title", example="")
+        private String title;
+        @Schema(description = "author", example="")
+        private String author;
+    }
+
+    @SuperBuilder
+    @Schema
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class PagedListReqDto extends DefaultDto.PagedListReqDto{
+        @Schema(description = "title", example="")
+        private String title;
+        @Schema(description = "author", example="")
+        private String author;
+    }
+
+    @SuperBuilder
+    @Schema
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class ScrollListReqDto extends DefaultDto.ScrollListReqDto{
+        private String title;
+        @Schema(description = "author", example="")
+        private String author;
+    }
+
 }
